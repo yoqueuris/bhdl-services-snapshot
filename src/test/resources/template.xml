@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsp:Policy xmlns:L7p="http://www.layer7tech.com/ws/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2002/12/policy">
+    <wsp:All wsp:Usage="Required">
+		<L7p:CommentAssertion>
+            <L7p:Comment stringValue="Nombre de la API: --Colocar el nombre de la API--"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="URI: --Colocar la URI de acceso a la API--"/>
+        </L7p:CommentAssertion>
+        <L7p:CommentAssertion>
+            <L7p:Comment stringValue="Descripción: --Colocar la descripción de acceso a la API--"/>
+        </L7p:CommentAssertion>
+        <L7p:SslAssertion>
+            <L7p:AssertionComment assertionComment="included">
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="RIGHT.COMMENT"/>
+                        <L7p:value stringValue="Requiere SSL"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:AssertionComment>
+        </L7p:SslAssertion>
+        <L7p:CustomizeErrorResponse>
+            <L7p:Content stringValue="${error.message}"/>
+            <L7p:ContentType stringValue="application/json; charset=UTF-8"/>
+            <L7p:ExtraHeaders nameValuePairArray="included">
+                <L7p:item nameValuePair="included">
+                    <L7p:Key stringValue="Access-Control-Allow-Credentials"/>
+                    <L7p:Value stringValue="true"/>
+                </L7p:item>
+                <L7p:item nameValuePair="included">
+                    <L7p:Key stringValue="Access-Control-Allow-Origin"/>
+                    <L7p:Value stringValue="*"/>
+                </L7p:item>
+            </L7p:ExtraHeaders>
+            <L7p:HttpStatus stringValue="${status}"/>
+        </L7p:CustomizeErrorResponse>
+        <wsp:All wsp:Usage="Required">
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLmp3dH0="/>
+                <L7p:VariableToSet stringValue="x-jwt"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="JHtyZXF1ZXN0Lmh0dHAuaGVhZGVyLngta2V5dmFsdWV9"/>
+                <L7p:VariableToSet stringValue="x-keyvalue"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue=""/>
+                <L7p:VariableToSet stringValue="log"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="LS1DYW1iaWFyIHBvciBlbCBjYW5hbCBvIGFwcCBxdWUgc2UgbWFuZWphcmEtLQ=="/>
+                <L7p:VariableToSet stringValue="app"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="LS1DYW1iaWFyIHBvciBsdWdhciBkb25kZSBzZSBkZWJlIGxlZXIgbGEgZGF0YSwgcXVlcnlTdHJpbmcgbyBib2R5LS0="/>
+                <L7p:VariableToSet stringValue="data_location"/>
+            </L7p:SetVariable>
+            <L7p:SetVariable>
+                <L7p:Base64Expression stringValue="QVNJR05BUiBFTCBTQ09QRSBBUFJPUElBRE8="/>
+                <L7p:VariableToSet stringValue="scopes_auth"/>
+            </L7p:SetVariable>
+            <L7p:Encapsulated>
+                <L7p:EncapsulatedAssertionConfigGuid stringValue="6f5c0769-c066-4a43-b159-227f1792a8d2"/>
+                <L7p:EncapsulatedAssertionConfigName stringValue="BHDL Throws Exception"/>
+                <L7p:Parameters mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="doFail"/>
+                        <L7p:value stringValue="false"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="errorCode"/>
+                        <L7p:value stringValue="5001"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="errorMsg"/>
+                        <L7p:value stringValue="${gateway.bhdleon.cwp.mobile.errors.generic}"/>
+                    </L7p:entry>
+                    <L7p:entry>
+                        <L7p:key stringValue="status"/>
+                        <L7p:value stringValue="500"/>
+                    </L7p:entry>
+                </L7p:Parameters>
+            </L7p:Encapsulated>
+        </wsp:All>
+        <wsp:OneOrMore wsp:Usage="Required">
+            <L7p:HandleErrors L7p:Usage="Required"
+                includeIOException="false" variablePrefix="handleError">
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <L7p:Encapsulated>
+                        <L7p:EncapsulatedAssertionConfigGuid stringValue="8138417b-e46a-4441-af11-b4d88e379e5e"/>
+                        <L7p:EncapsulatedAssertionConfigName stringValue="BHDL CORS Validation v2"/>
+                    </L7p:Encapsulated>
+                    <wsp:All wsp:Usage="Required">
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:Encapsulated>
+                                <L7p:AssertionComment assertionComment="included">
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="403:900101;Token invalido"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:AssertionComment>
+                                <L7p:EncapsulatedAssertionConfigGuid stringValue="6f5c0769-c066-4a43-b159-227f1792a8d2"/>
+                                <L7p:EncapsulatedAssertionConfigName stringValue="BHDL Throws Exception"/>
+                                <L7p:Parameters mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="doFail"/>
+                                    <L7p:value stringValue="false"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="errorCode"/>
+                                    <L7p:value stringValue=""/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="errorMsg"/>
+                                    <L7p:value stringValue="${gateway.bhdleon.cwp.mobile.errors.401}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="status"/>
+                                    <L7p:value stringValue="401"/>
+                                    </L7p:entry>
+                                </L7p:Parameters>
+                            </L7p:Encapsulated>
+                            <L7p:Encapsulated>
+                                <L7p:AssertionComment assertionComment="included">
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Evalua si el JWT esta encriptado y extrae la información de certificados"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:AssertionComment>
+                                <L7p:EncapsulatedAssertionConfigGuid stringValue="85034b6b-d890-4af1-adb2-b589f42f55eb"/>
+                                <L7p:EncapsulatedAssertionConfigName stringValue="BHDL Validación OAUTH v2"/>
+                                <L7p:Parameters mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="appName"/>
+                                    <L7p:value stringValue="${app}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="auditType"/>
+                                    <L7p:value stringValue="OAUTH_JWT"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="clientId"/>
+                                    <L7p:value stringValue=""/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="clientSecret"/>
+                                    <L7p:value stringValue=""/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="jwt"/>
+                                    <L7p:value stringValue="${x-jwt}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="jwtCrypt"/>
+                                    <L7p:value stringValue="true"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="log"/>
+                                    <L7p:value stringValue="${log}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="scope"/>
+                                    <L7p:value stringValue=""/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="scope_auth"/>
+                                    <L7p:value stringValue="${scopes_auth}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="type"/>
+                                    <L7p:value stringValue="jwt"/>
+                                    </L7p:entry>
+                                </L7p:Parameters>
+                            </L7p:Encapsulated>
+                            <L7p:Encapsulated>
+                                <L7p:EncapsulatedAssertionConfigGuid stringValue="20fd0285-60d3-4e54-9a9f-7002fafd0e53"/>
+                                <L7p:EncapsulatedAssertionConfigName stringValue="BHDL Pre-Procesador Crypto"/>
+                                <L7p:Parameters mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="session.custom"/>
+                                    <L7p:value stringValue="${session.custom}"/>
+                                    </L7p:entry>
+                                </L7p:Parameters>
+                            </L7p:Encapsulated>
+                            <L7p:CustomAssertion>
+                                <L7p:base64SerializedValue>rO0ABXNyADFjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uQ3VzdG9tQXNzZXJ0aW9uSG9sZGVyZtcreFwddTICAAlaAAxpc1VpQXV0b09wZW5MAApjYXRlZ29yaWVzdAAPTGphdmEvdXRpbC9TZXQ7TAAIY2F0ZWdvcnl0ACpMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DYXRlZ29yeTtMAA9jdXN0b21Bc3NlcnRpb250ADFMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DdXN0b21Bc3NlcnRpb247TAAUY3VzdG9tTW9kdWxlRmlsZU5hbWV0ABJMamF2YS9sYW5nL1N0cmluZztMAA9kZXNjcmlwdGlvblRleHRxAH4ABEwAD3BhbGV0dGVOb2RlTmFtZXEAfgAETAAOcG9saWN5Tm9kZU5hbWVxAH4ABEwAHnJlZ2lzdGVyZWRDdXN0b21GZWF0dXJlU2V0TmFtZXEAfgAEeHIAJWNvbS5sN3RlY2gucG9saWN5LmFzc2VydGlvbi5Bc3NlcnRpb27bX2OZPL2isQIAAloAB2VuYWJsZWRMABBhc3NlcnRpb25Db21tZW50dAAvTGNvbS9sN3RlY2gvcG9saWN5L2Fzc2VydGlvbi9Bc3NlcnRpb24kQ29tbWVudDt4cAFwAHNyABFqYXZhLnV0aWwuSGFzaFNldLpEhZWWuLc0AwAAeHB3DAAAAAQ/QAAAAAAAAnNyAChjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uZXh0LkNhdGVnb3J5WrCcZaFE/jUCAAJJAAVteUtleUwABm15TmFtZXEAfgAEeHAAAAAEdAAVTG9nZ2luZ0F1ZGl0aW5nQWxlcnRzc3EAfgAKAAAAC3QAEEN1c3RvbUFzc2VydGlvbnN4cHNyADxjb20uZ2xvYmFsc2Vpcy5jYWFwaWd3LmN1c3RvbWFzc2VydGlvbi5DcnlwdG9DdXN0b21Bc3NlcnRpb26BPco8tz6iCgIABUkADW9wZXJhdGlvblR5cGVMAARkYXRhcQB+AARMAApwcml2YXRlS2V5cQB+AARMAAZyc2FLZXlxAH4ABEwAC3g1MDlQcml2S2V5cQB+AAR4cAAAAAF0AA4ke2RhdGEucmVzdWx0fXQAFSR7c2Vzc2lvbi5wcml2YXRlS2V5fXQADSR7eC1rZXl2YWx1ZX10AAB0ABlDcnlwdG9DdXN0b21Bc3NlcnRpb24uamFydABYPGh0bWw+UHJ1ZWJhIGRlIHVuYSBhc2VyY2nDs24gY3VzdG9taXphZGEgcGFyYSA3bGF5ZXIuPGJyPjA9ZW5jcmlwdGFyLCAxPWRlc2NpZnJhcjxodG1sPnBwcA==</L7p:base64SerializedValue>
+                            </L7p:CustomAssertion>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHtjcnlwdG8ucmVzdWx0fQ=="/>
+                                <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                                <L7p:DataType variableDataType="message"/>
+                                <L7p:VariableToSet stringValue="request"/>
+                            </L7p:SetVariable>
+                            <L7p:Encapsulated>
+                                <L7p:AssertionComment assertionComment="included">
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="403:900101;Token invalido"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:AssertionComment>
+                                <L7p:EncapsulatedAssertionConfigGuid stringValue="6f5c0769-c066-4a43-b159-227f1792a8d2"/>
+                                <L7p:EncapsulatedAssertionConfigName stringValue="BHDL Throws Exception"/>
+                                <L7p:Parameters mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="doFail"/>
+                                    <L7p:value stringValue="false"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="errorCode"/>
+                                    <L7p:value stringValue="403"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="errorMsg"/>
+                                    <L7p:value stringValue="${gateway.bhdleon.cwp.mobile.errors.403}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="status"/>
+                                    <L7p:value stringValue="403"/>
+                                    </L7p:entry>
+                                </L7p:Parameters>
+                            </L7p:Encapsulated>
+                            <L7p:Encapsulated>
+                                <L7p:EncapsulatedAssertionConfigGuid stringValue="968a6c52-9c3d-403b-b747-8190bee907e3"/>
+                                <L7p:EncapsulatedAssertionConfigName stringValue="BHDL_ MBP Validación de dispositivo"/>
+                                <L7p:Parameters mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="inputPayload"/>
+                                    <L7p:value stringValue="${request.mainpart}"/>
+                                    </L7p:entry>
+                                </L7p:Parameters>
+                            </L7p:Encapsulated>
+                            <L7p:Encapsulated>
+                                <L7p:AssertionComment assertionComment="included">
+                                    <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="403:900101;Token invalido"/>
+                                    </L7p:entry>
+                                    </L7p:Properties>
+                                </L7p:AssertionComment>
+                                <L7p:EncapsulatedAssertionConfigGuid stringValue="6f5c0769-c066-4a43-b159-227f1792a8d2"/>
+                                <L7p:EncapsulatedAssertionConfigName stringValue="BHDL Throws Exception"/>
+                                <L7p:Parameters mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="doFail"/>
+                                    <L7p:value stringValue="false"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="errorCode"/>
+                                    <L7p:value stringValue="400"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="errorMsg"/>
+                                    <L7p:value stringValue="${gateway.bhdleon.cwp.mobile.errors.400}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="status"/>
+                                    <L7p:value stringValue="400"/>
+                                    </L7p:entry>
+                                </L7p:Parameters>
+                            </L7p:Encapsulated>
+                            <wsp:All wsp:Usage="Required">
+                                <L7p:EvaluateJsonPathExpressionV2>
+                                    <L7p:Expression stringValue="$.transactionId"/>
+                                    <L7p:VariablePrefix stringValue="transactionId"/>
+                                </L7p:EvaluateJsonPathExpressionV2>
+                                <L7p:EvaluateJsonPathExpressionV2>
+                                    <L7p:Expression stringValue="$.channel"/>
+                                    <L7p:VariablePrefix stringValue="channel"/>
+                                </L7p:EvaluateJsonPathExpressionV2>
+                                <L7p:EvaluateJsonPathExpressionV2>
+                                    <L7p:Expression stringValue="$.userId"/>
+                                    <L7p:OtherTargetMessageVariable stringValue="jwt_data"/>
+                                    <L7p:Target target="OTHER"/>
+                                    <L7p:VariablePrefix stringValue="userId"/>
+                                </L7p:EvaluateJsonPathExpressionV2>
+                                <L7p:UUIDGenerator>
+                                    <L7p:Enabled booleanValue="false"/>
+                                    <L7p:MaximumQuantity intValue="1"/>
+                                    <L7p:TargetVariable stringValue="transacId.result"/>
+                                </L7p:UUIDGenerator>
+                            </wsp:All>
+                            <L7p:Encapsulated>
+                                <L7p:EncapsulatedAssertionConfigGuid stringValue="505b148f-9bea-43d3-82dd-b4a468385042"/>
+                                <L7p:EncapsulatedAssertionConfigName stringValue="Acumulador de auditoria para BHD León"/>
+                                <L7p:Parameters mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="appName"/>
+                                    <L7p:value stringValue="${channel.result}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="correlationId"/>
+                                    <L7p:value stringValue=""/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="log"/>
+                                    <L7p:value stringValue="${log}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="message"/>
+                                    <L7p:value stringValue="${request.mainpart}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="messageId"/>
+                                    <L7p:value stringValue=""/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="service"/>
+                                    <L7p:value stringValue="${request.http.uri}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="transactionId"/>
+                                    <L7p:value stringValue="${transactionId.result}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="transID"/>
+                                    <L7p:value stringValue="${requestTransaction.result}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="type"/>
+                                    <L7p:value stringValue="REQUEST"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="userName"/>
+                                    <L7p:value stringValue="${userId.result}"/>
+                                    </L7p:entry>
+                                </L7p:Parameters>
+                            </L7p:Encapsulated>
+                            <L7p:SetVariable>
+                                <L7p:Base64Expression stringValue="JHt0cmFuc2FjdGlvbklkLnJlc3VsdH0="/>
+                                <L7p:ContentType stringValue="application/json; charset=utf-8"/>
+                                <L7p:DataType variableDataType="message"/>
+                                <L7p:Enabled booleanValue="false"/>
+                                <L7p:VariableToSet stringValue="transactionId"/>
+                            </L7p:SetVariable>
+                            <L7p:CommentAssertion>
+                                <L7p:Comment stringValue="Se puede utilizar &quot;request&quot; para obtener información de la transacción en claro."/>
+                            </L7p:CommentAssertion>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="AUTH"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="RIGHT.COMMENT"/>
+                                    <L7p:value stringValue="Verificación de la autorización - JWT"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                        <wsp:All wsp:Usage="Required">
+                            <L7p:CommentAssertion>
+                                <L7p:Comment stringValue="La variable &quot;auditoria&quot;, se obtiene de la asercion &quot;Acumulador de Auditoria para BHD León&quot;"/>
+                            </L7p:CommentAssertion>
+                            <L7p:Encapsulated>
+                                <L7p:EncapsulatedAssertionConfigGuid stringValue="505b148f-9bea-43d3-82dd-b4a468385042"/>
+                                <L7p:EncapsulatedAssertionConfigName stringValue="Acumulador de auditoria para BHD León"/>
+                                <L7p:Parameters mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="appName"/>
+                                    <L7p:value stringValue="${channel.result}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="correlationId"/>
+                                    <L7p:value stringValue=""/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="log"/>
+                                    <L7p:value stringValue="${log}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="message"/>
+                                    <L7p:value stringValue="${message.out}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="messageId"/>
+                                    <L7p:value stringValue=""/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="service"/>
+                                    <L7p:value stringValue="${request.http.uri}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="transactionId"/>
+                                    <L7p:value stringValue="${transactionId.result}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="transID"/>
+                                    <L7p:value stringValue="${requestTransaction.result}"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="type"/>
+                                    <L7p:value stringValue="RESPONSE"/>
+                                    </L7p:entry>
+                                    <L7p:entry>
+                                    <L7p:key stringValue="userName"/>
+                                    <L7p:value stringValue="${userId.result}"/>
+                                    </L7p:entry>
+                                </L7p:Parameters>
+                            </L7p:Encapsulated>
+                            <L7p:Encapsulated>
+                                <L7p:EncapsulatedAssertionConfigGuid stringValue="75e46929-5505-4b39-8c6e-7f23b64f59f6"/>
+                                <L7p:EncapsulatedAssertionConfigName stringValue="Logging BHD Leon"/>
+                                <L7p:Parameters mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="mensaje.in"/>
+                                    <L7p:value stringValue="${auditoria}"/>
+                                    </L7p:entry>
+                                </L7p:Parameters>
+                            </L7p:Encapsulated>
+                            <L7p:CommentAssertion>
+                                <L7p:Comment stringValue="Pasar la variable &quot;message.out&quot; para el resultado de la API"/>
+                            </L7p:CommentAssertion>
+                            <L7p:CustomAssertion>
+                                <L7p:base64SerializedValue>rO0ABXNyADFjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uQ3VzdG9tQXNzZXJ0aW9uSG9sZGVyZtcreFwddTICAAlaAAxpc1VpQXV0b09wZW5MAApjYXRlZ29yaWVzdAAPTGphdmEvdXRpbC9TZXQ7TAAIY2F0ZWdvcnl0ACpMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DYXRlZ29yeTtMAA9jdXN0b21Bc3NlcnRpb250ADFMY29tL2w3dGVjaC9wb2xpY3kvYXNzZXJ0aW9uL2V4dC9DdXN0b21Bc3NlcnRpb247TAAUY3VzdG9tTW9kdWxlRmlsZU5hbWV0ABJMamF2YS9sYW5nL1N0cmluZztMAA9kZXNjcmlwdGlvblRleHRxAH4ABEwAD3BhbGV0dGVOb2RlTmFtZXEAfgAETAAOcG9saWN5Tm9kZU5hbWVxAH4ABEwAHnJlZ2lzdGVyZWRDdXN0b21GZWF0dXJlU2V0TmFtZXEAfgAEeHIAJWNvbS5sN3RlY2gucG9saWN5LmFzc2VydGlvbi5Bc3NlcnRpb27bX2OZPL2isQIAAloAB2VuYWJsZWRMABBhc3NlcnRpb25Db21tZW50dAAvTGNvbS9sN3RlY2gvcG9saWN5L2Fzc2VydGlvbi9Bc3NlcnRpb24kQ29tbWVudDt4cAFwAHNyABFqYXZhLnV0aWwuSGFzaFNldLpEhZWWuLc0AwAAeHB3DAAAAAQ/QAAAAAAAAnNyAChjb20ubDd0ZWNoLnBvbGljeS5hc3NlcnRpb24uZXh0LkNhdGVnb3J5WrCcZaFE/jUCAAJJAAVteUtleUwABm15TmFtZXEAfgAEeHAAAAAEdAAVTG9nZ2luZ0F1ZGl0aW5nQWxlcnRzc3EAfgAKAAAAC3QAEEN1c3RvbUFzc2VydGlvbnN4cHNyADxjb20uZ2xvYmFsc2Vpcy5jYWFwaWd3LmN1c3RvbWFzc2VydGlvbi5DcnlwdG9DdXN0b21Bc3NlcnRpb26BPco8tz6iCgIABUkADW9wZXJhdGlvblR5cGVMAARkYXRhcQB+AARMAApwcml2YXRlS2V5cQB+AARMAAZyc2FLZXlxAH4ABEwAC3g1MDlQcml2S2V5cQB+AAR4cAAAAAB0AA4ke21lc3NhZ2Uub3V0fXQAFSR7c2Vzc2lvbi5wcml2YXRlS2V5fXQADSR7eC1rZXl2YWx1ZX10AAB0ABlDcnlwdG9DdXN0b21Bc3NlcnRpb24uamFydABYPGh0bWw+UHJ1ZWJhIGRlIHVuYSBhc2VyY2nDs24gY3VzdG9taXphZGEgcGFyYSA3bGF5ZXIuPGJyPjA9ZW5jcmlwdGFyLCAxPWRlc2NpZnJhcjxodG1sPnBwcA==</L7p:base64SerializedValue>
+                            </L7p:CustomAssertion>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="Access-Control-Allow-Origin"/>
+                                <L7p:HeaderValue stringValue=""/>
+                                <L7p:Operation operation="REMOVE"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:AddHeader>
+                                <L7p:HeaderName stringValue="Access-Control-Allow-Origin"/>
+                                <L7p:HeaderValue stringValue="*"/>
+                                <L7p:Target target="RESPONSE"/>
+                            </L7p:AddHeader>
+                            <L7p:HardcodedResponse>
+                                <L7p:Base64ResponseBody stringValue="ewogICJkYXRhIjoiJHtjcnlwdG8ucmVzdWx0fSIKfQ=="/>
+                                <L7p:ResponseContentType stringValue="application/json; charset=UTF-8"/>
+                            </L7p:HardcodedResponse>
+                            <L7p:assertionComment>
+                                <L7p:Properties mapValue="included">
+                                    <L7p:entry>
+                                    <L7p:key stringValue="LEFT.COMMENT"/>
+                                    <L7p:value stringValue="RESPONSE"/>
+                                    </L7p:entry>
+                                </L7p:Properties>
+                            </L7p:assertionComment>
+                        </wsp:All>
+                    </wsp:All>
+                </wsp:OneOrMore>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="TRY"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </L7p:HandleErrors>
+            <wsp:All wsp:Usage="Required">
+                <L7p:SetVariable>
+                    <L7p:Base64Expression stringValue="ew0KICAgICJyZXN1bHQiOiB7DQogICAgICAgICJtZXNzYWdlIjogIiR7ZXJyb3JNc2d9IiwNCiAgICAgICAgImNvZGUiOiAiJHtlcnJvckNvZGV9IiwNCiAgICAgICAgInN1Y2Nlc3MiOiBmYWxzZQ0KICAgIH0sDQogICAgImRhdGEiOiB7IH0NCn0="/>
+                    <L7p:VariableToSet stringValue="errorMsgOut"/>
+                </L7p:SetVariable>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="a6f5263f-aa7b-48d6-8bec-2a368a7760f7"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="BHDL Configura Error V2"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="appName"/>
+                            <L7p:value stringValue="${app}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="correaltionId"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="encrypt"/>
+                            <L7p:value stringValue="true"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="error.message"/>
+                            <L7p:value stringValue="${errorMsgOut}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="isAudited"/>
+                            <L7p:value stringValue="true"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="log"/>
+                            <L7p:value stringValue="${log}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="messageId"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="privateKey"/>
+                            <L7p:value stringValue="${session.privateKey}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="rsaKey"/>
+                            <L7p:value stringValue="${x-keyvalue}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="service"/>
+                            <L7p:value stringValue="${request.http.uri}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="status"/>
+                            <L7p:value stringValue="${status}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="transactionId"/>
+                            <L7p:value stringValue="${transactionId}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="type"/>
+                            <L7p:value stringValue="ERROR_MSG"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="userName"/>
+                            <L7p:value stringValue="${session.subscriber_id}"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <wsp:OneOrMore wsp:Usage="Required">
+                    <wsp:All wsp:Usage="Required">
+                        <L7p:ComparisonAssertion>
+                            <L7p:CaseSensitive booleanValue="false"/>
+                            <L7p:Expression1 stringValue="${crypto.result}"/>
+                            <L7p:Operator operatorNull="null"/>
+                            <L7p:Predicates predicates="included">
+                                <L7p:item dataType="included">
+                                    <L7p:Type variableDataType="string"/>
+                                </L7p:item>
+                                <L7p:item binary="included">
+                                    <L7p:Negated booleanValue="true"/>
+                                    <L7p:Operator operator="EMPTY"/>
+                                    <L7p:RightValue stringValue=""/>
+                                </L7p:item>
+                            </L7p:Predicates>
+                        </L7p:ComparisonAssertion>
+                        <L7p:SetVariable>
+                            <L7p:Base64Expression stringValue="ew0KICAiZGF0YSI6ICIke2NyeXB0by5yZXN1bHR9Ig0KfQ=="/>
+                            <L7p:VariableToSet stringValue="error.message"/>
+                        </L7p:SetVariable>
+                    </wsp:All>
+                    <L7p:SetVariable>
+                        <L7p:Base64Expression stringValue="JHtlcnJvck1zZ091dH0="/>
+                        <L7p:VariableToSet stringValue="error.message"/>
+                    </L7p:SetVariable>
+                </wsp:OneOrMore>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="505b148f-9bea-43d3-82dd-b4a468385042"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="Acumulador de auditoria para BHD León"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="appName"/>
+                            <L7p:value stringValue="${channel.result}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="correlationId"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="log"/>
+                            <L7p:value stringValue="${log}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="message"/>
+                            <L7p:value stringValue="${errorMsgOut}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="messageId"/>
+                            <L7p:value stringValue=""/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="service"/>
+                            <L7p:value stringValue="${request.http.uri}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="transactionId"/>
+                            <L7p:value stringValue="${transactionId.result}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="transID"/>
+                            <L7p:value stringValue="${requestTransaction.result}"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="type"/>
+                            <L7p:value stringValue="RESPONSE"/>
+                        </L7p:entry>
+                        <L7p:entry>
+                            <L7p:key stringValue="userName"/>
+                            <L7p:value stringValue="${userId.result}"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:Encapsulated>
+                    <L7p:EncapsulatedAssertionConfigGuid stringValue="75e46929-5505-4b39-8c6e-7f23b64f59f6"/>
+                    <L7p:EncapsulatedAssertionConfigName stringValue="Logging BHD Leon"/>
+                    <L7p:Parameters mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="mensaje.in"/>
+                            <L7p:value stringValue="${auditoria}"/>
+                        </L7p:entry>
+                    </L7p:Parameters>
+                </L7p:Encapsulated>
+                <L7p:RaiseError/>
+                <L7p:assertionComment>
+                    <L7p:Properties mapValue="included">
+                        <L7p:entry>
+                            <L7p:key stringValue="LEFT.COMMENT"/>
+                            <L7p:value stringValue="ERROR"/>
+                        </L7p:entry>
+                    </L7p:Properties>
+                </L7p:assertionComment>
+            </wsp:All>
+            <L7p:assertionComment>
+                <L7p:Properties mapValue="included">
+                    <L7p:entry>
+                        <L7p:key stringValue="LEFT.COMMENT"/>
+                        <L7p:value stringValue="OPERACION"/>
+                    </L7p:entry>
+                </L7p:Properties>
+            </L7p:assertionComment>
+        </wsp:OneOrMore>
+    </wsp:All>
+</wsp:Policy>
